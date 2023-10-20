@@ -1,8 +1,16 @@
 package ifrn.projeto.biblioteca.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Emprestimo {
 	
-	 private Long id;
+	    @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    private Long id;
 	    private String aluno;
 	    private String livro;
 	    private String dataEmprestimo;
@@ -38,5 +46,12 @@ public class Emprestimo {
 		public void setDataEntrega(String dataEntrega) {
 			this.dataEntrega = dataEntrega;
 		}
+		
+		@Override
+		public String toString() {
+			return "Emprestimo [id=" + id + ", aluno=" + aluno + ", livro=" + livro + ", dataEmprestimo="
+					+ dataEmprestimo + ", dataEntrega=" + dataEntrega + "]";
+		}
+		
 
 }
