@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <!-- Compiled and minified CSS -->
@@ -13,6 +13,9 @@
 		<h1>Adicionar Empréstimo de Livro</h1>
 	
 			<form action="/emprestimos" method="post">
+				<div>
+					<label>Id: </label> <input type="text" name="id">
+				</div>
 				<div>
 					<label>Aluno: </label> <input type="text" name="aluno">
 				</div>
