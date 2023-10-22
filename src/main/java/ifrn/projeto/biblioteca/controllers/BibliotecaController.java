@@ -1,10 +1,12 @@
 package ifrn.projeto.biblioteca.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,5 +41,22 @@ public class BibliotecaController {
 		ModelAndView mv = new ModelAndView("biblioteca/lista");
 		mv.addObject("emprestimos", emprestimos);
 		return mv;
+	}
+	
+	@GetMapping("/{id}")
+	public ModelAndView detalhar(@PathVariable Long id) {
+		ModelAndView md = new ModelAndView();
+		Optional<Emprestimo> opt = er.findById(id);
+		
+		if(opt.isEmpty()) {
+			md.setViewName("redirect:/emprestimos");
+			return md;
+		}
+		
+		md.setViewName("biblioteca/detalhes");
+		Emprestimo emprestimo = opt.get();
+		md.addObject("emprestimo", emprestimo);
+		
+		return md;	
 	}
 }
