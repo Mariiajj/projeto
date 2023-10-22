@@ -16,7 +16,7 @@ public class BibliotecaController {
 	
 	@RequestMapping("/emprestimos/form")
 	public String form() {
-		return "formEmprestimo";
+		return "biblioteca/formEmprestimo";
 	}
 
 	@PostMapping("/emprestimos")
@@ -25,6 +25,6 @@ public class BibliotecaController {
 		System.out.println(emprestimo);
 		er.save(emprestimo);
 		
-		return "emprestimo-realizado";
+		return "biblioteca/emprestimo-realizado";
 	}
 }
