@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <title>Bibliioteca</title>
 </head>
 <body>
@@ -33,6 +34,7 @@
 					<td th:text="${e.cpf}">70642570418</td>
 					<td th:text="${e.dataNascimento}">19/03/2005</td>
 					<td th:text="${e.endereco}">Rua Flor de Cactos</td>
+					<td><a th:href="@{/emprestimos/{id}/deletar(id=${e.id})}">  <i class="material-icons">delete</i></a></td>
 				</tr>
 			</tbody>
 		</table>
