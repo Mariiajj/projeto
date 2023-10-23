@@ -11,26 +11,28 @@
 	
 	<div class="container">
 		
-		<h1>Lista de Empréstimos</h1>
+		<h1>Lista de Alunos</h1>
 	 
 		<table>
 			
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>Aluno</th>
-					<th>Livro</th>
-					<th>Data do Empréstimo</th>
-					<th>Data para a Entrega</th>
+					<th>Matrícula</th>
+					<th>Nome</th>
+					<th>CPF</th>
+					<th>Data de Nascimento</th>
+					<th>Endereço</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="e : ${emprestimos}">
 					<td th:text="${e.id}">1</td>
-					<td><a th:href="@{/emprestimos/{id}(id=${e.id})}"><span th:text="${e.aluno}">Maria</span></a></td>
-					<td th:text="${e.livro}">Diário de um banana</td>
-					<td th:text="${e.dataEmprestimo}">20/10/2023</td>
-					<td th:text="${e.dataEntrega}">10/11/2023</td>
+					<td><a th:href="@{/emprestimos/{id}(id=${e.id})}"><span th:text="${e.matricula}">20201204010004</span></a></td>
+					<td th:text="${e.nome}">Maria</td>
+					<td th:text="${e.cpf}">70642570418</td>
+					<td th:text="${e.dataNascimento}">19/03/2005</td>
+					<td th:text="${e.endereco}">Rua Flor de Cactos</td>
 				</tr>
 			</tbody>
 		</table>

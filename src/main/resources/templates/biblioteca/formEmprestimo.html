@@ -10,24 +10,28 @@
 	<div th:replace="~{menu :: menu}"></div>
 	
 	<div class="container">
-		<h1>Adicionar Empréstimo de Livro</h1>
+		<h1>Cadastro de Aluno</h1>
 	
 			<form action="/emprestimos" method="post">
 				<div>
 					<label>Id: </label> <input type="text" name="id">
 				</div>
 				<div>
-					<label>Aluno: </label> <input type="text" name="aluno">
+					<label>Matrícula: </label> <input type="text" name="matricula">
 				</div>
 				<div>
-					<label>Livro: </label> <input type="text" name="livro">
+					<label>Nome: </label> <input type="text" name="nome">
 				</div>
 				<div>
-					<label>Data da realização do Empréstimo: </label> <input type="text" name="dataEmprestimo">
+					<label>CPF: </label> <input type="text" name="cpf">
 				</div>
 				<div>
-					<label>Data Prevista para a entrega: </label> <input type="text" name="dataEntrega">
+					<label>Data de Nascimento: </label> <input type="text" name="dataNascimento">
 				</div>
+				<div>
+					<label>Endereço: </label> <input type="text" name="endereco">
+				</div>
+				
 			<div>
 				<button class="waves-effect waves-light btn green" type="submit">Salvar</button>
 				<button class="waves-effect waves-light btn red" type="reset">Limpar</button>

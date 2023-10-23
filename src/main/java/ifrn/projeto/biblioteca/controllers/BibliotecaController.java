@@ -21,18 +21,18 @@ public class BibliotecaController {
 	@Autowired
 	private EmprestimoRepository er;
 	
-	@RequestMapping("/form")
-	public String form() {
+	@GetMapping("/form")
+	public String form(Emprestimo Emprestimo) {
 		return "biblioteca/formEmprestimo";
 	}
-
+	
 	@PostMapping
 	public String realizar(Emprestimo emprestimo) {
 		
 		System.out.println(emprestimo);
 		er.save(emprestimo);
 		
-		return "biblioteca/emprestimo-realizado";
+		return "biblioteca/cadastro-realizado";
 	}
 	
 	@GetMapping
@@ -42,21 +42,22 @@ public class BibliotecaController {
 		mv.addObject("emprestimos", emprestimos);
 		return mv;
 	}
-	
+    
 	@GetMapping("/{id}")
 	public ModelAndView detalhar(@PathVariable Long id) {
 		ModelAndView md = new ModelAndView();
 		Optional<Emprestimo> opt = er.findById(id);
-		
+
 		if(opt.isEmpty()) {
 			md.setViewName("redirect:/emprestimos");
 			return md;
 		}
-		
+
 		md.setViewName("biblioteca/detalhes");
 		Emprestimo emprestimo = opt.get();
 		md.addObject("emprestimo", emprestimo);
-		
+
 		return md;	
 	}
 }
+
