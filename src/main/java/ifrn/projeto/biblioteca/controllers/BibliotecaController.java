@@ -59,5 +59,18 @@ public class BibliotecaController {
 
 		return md;	
 	}
+	
+	@GetMapping("/{id}/deletar")
+	public String apagarAluno(@PathVariable Long id) {
+		
+		Optional<Emprestimo> opt = er.findById(id);
+		
+		if(!opt.isEmpty()) {  
+			Emprestimo emprestimo = opt.get();
+			er.delete(emprestimo);
+		}
+		
+		return "redirect:/emprestimos";
+	}
 }
 
