@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
 <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <title>Bibliioteca</title>
@@ -15,11 +19,11 @@
         			<div class="card-content white-text">
           				<span class="card-title">Empréstimo</span>
           				<p><strong>Id: </strong><span th:text="${emprestimo.id}">1</span></p>
-          				<p><strong>Matrícula: </strong><span th:text="${emprestimo.matricula}">20201204010004</span></p>
-          				<p><strong>Nome: </strong><span th:text="${emprestimo.nome}">Maria</span></p>
-          				<p><strong>CPF: </strong><span th:text="${emprestimo.cpf}">70642570418</span></p>
-          				<p><strong>Data de Nascimento: </strong><span th:text="${emprestimo.dataNascimento}">19/03/2005</span></p>
-          				<p><strong>Endereço: </strong><span th:text="${emprestimo.endereco}">Rua Flor de Cactos</span></p>
+          				<p><strong>matricula: </strong><span th:text="${emprestimo.matricula}">202012</span></p>
+          				<p><strong>nome: </strong><span th:text="${emprestimo.nome}">Maria</span></p>
+          				<p><strong>cpf: </strong><span th:text="${emprestimo.cpf}">20/10/2023</span></p>
+          				<p><strong>Data para a Entrega: </strong><span th:text="${emprestimo.dataNascimento}">10/11/2023</span></p>
+          				<p><strong>nome: </strong><span th:text="${emprestimo.endereco}">Maria</span></p>
         			</div>
       			</div>
     		</div>
@@ -29,4 +33,5 @@
 
 </body>
 </html>
+
 

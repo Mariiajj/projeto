@@ -11,10 +11,11 @@ public class Emprestimo {
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long id;
-	    private String aluno;
-	    private String livro;
-	    private String dataEmprestimo;
-	    private String dataEntrega;
+	    private String matricula;
+	    private String nome;
+	    private String cpf;
+	    private String dataNascimento;
+	    private String endereco;
 	    
 		public Long getId() {
 			return id;
@@ -22,37 +23,42 @@ public class Emprestimo {
 		public void setId(Long id) {
 			this.id = id;
 		}
-		public String getAluno() {
-			return aluno;
+		public String getMatricula() {
+			return matricula;
 		}
-		public void setAluno(String aluno) {
-			this.aluno = aluno;
+		public void setMatricula(String matricula) {
+			this.matricula = matricula;
 		}
-		public String getLivro() {
-			return livro;
+		public String getNome() {
+			return nome;
 		}
-		public void setLivro(String livro) {
-			this.livro = livro;
+		public void setNome(String nome) {
+			this.nome = nome;
 		}
-		public String getDataEmprestimo() {
-			return dataEmprestimo;
+		public String getCpf() {
+			return cpf;
 		}
-		public void setDataEmprestimo(String dataEmprestimo) {
-			this.dataEmprestimo = dataEmprestimo;
+		public void setCpf(String cpf) {
+			this.cpf = cpf;
 		}
-		public String getDataEntrega() {
-			return dataEntrega;
+		public String getDataNascimento() {
+			return dataNascimento;
 		}
-		public void setDataEntrega(String dataEntrega) {
-			this.dataEntrega = dataEntrega;
+		public void setDataNascimento(String dataNascimento) {
+			this.dataNascimento = dataNascimento;
 		}
-		
+		public String getEndereco() {
+			return endereco;
+		}
+		public void setEndereco(String endereco) {
+			this.endereco = endereco;
+		}
 		@Override
 		public String toString() {
-			return "Emprestimo [id=" + id + ", aluno=" + aluno + ", livro=" + livro + ", dataEmprestimo="
-					+ dataEmprestimo + ", dataEntrega=" + dataEntrega + "]";
+			return "Aluno [id=" + id + ", matricula=" + matricula + ", nome=" + nome + ", cpf=" + cpf
+					+ ", dataNascimento=" + dataNascimento + ", endereco=" + endereco + "]";
 		}
-		
+	    
 		
 		
 
