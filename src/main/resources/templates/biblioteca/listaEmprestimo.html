@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="icon" type="image/png" href="https://img.icons8.com/flat-round/32/000000/book.png">
+<title>Biblioteca</title>
+</head>
+<body>
+    <div th:replace="~{menu :: menu}"></div>
+    <div class="container">
+		
+     <h1>Lista de  Empréstimos</h1>
+     
+     <p style="color: rgb(77, 255, 0); font-weight: bolder;" th:if="${mensagem}" th:text="${mensagem}"></p>
+    <table class="highlight">
+        <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nome do Livro</th>
+              <th>Matricula</th>
+              <th>Data de Realização do Empréstimo</th>
+              <th>Data de Entrega</th>  
+              <th>Andamento da Devolução</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="e : ${emprestimos}">
+                <td th:text="${e.id}">1</td>
+                <td th:text="${e.titulo}">Diário de Um Banana</td>
+                <td th:text="${e.matricula}">20201204010004</td>
+                <td th:text="${#temporals.format(e.dataEmprestimo, 'dd/MM/yyyy')}">25/10/2023</td>
+                <td th:text="${#temporals.format(e.dataEntrega, 'dd/MM/yyyy')}">10/11/2023</td>
+                <td>
+                    <span style="color: rgb(128, 0, 128);" th:if="${e.andamento == 'Empréstimo Presente'}"><strong>Empréstimo Presente</strong></span>
+                    <span style="color: rgb(245, 9, 9);" th:if="${e.andamento == 'Empréstimo em Atraso' }"><strong>Empréstimo em Atraso</strong></span>
+                    <span style="color: rgb(10, 231, 10);" th:if="${e.andamento == 'Empréstimo Concluído'}"><strong>Empréstimo Concluído </strong></span>
+                </td>
+                <td>
+                    <a style="color: rgb(9, 253, 9);" th:href="@{/emprestimos/{id}/concluir(id=${e.id})}"><span class="material-icons">library_add</span></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+

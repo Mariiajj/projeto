@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://img.icons8.com/flat-round/32/000000/book.png">
+<title>Bibliioteca</title>
+</head>
+<body>
+	<div th:replace="~{menu :: menu}"></div>
+	
+	<div class="container">
+		
+		<h1>Listagem de Livros</h1>
+	 
+		<table class="highlight">
+			
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Título</th>
+					<th>Autor(a)</th>
+					<th>Editora</th>
+					<th>Ano de Publicação</th>
+					<th>Edição</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="l : ${livros}">
+					<td th:text="${l.id}">1</td>
+					<td><a th:href="@{/livros/{id}(id=${l.id})}"><span th:text="${l.titulo}">Diario de um Banana</span></a></td>
+					<td th:text="${l.autor}">Jeff Kinney</td>
+					<td th:text="${l.editora}">VR Editora</td>
+					<td th:text="${l.anoPublicacao}">01/07/2015</td>
+					<td th:text="${l.edicao}">6°</td>
+					<td>
+						<a th:href="@{/livros/{id}/selecionar(id=${l.id})}"><i class="material-icons">edit</i></a>
+						<a th:href="@{/livros/{id}/deletar(id=${l.id})}"><i class="material-icons">delete</i></a>
+					</td>
+			</tbody>
+		</table>
+		
+	</div>
+	
+</body>
+</html>

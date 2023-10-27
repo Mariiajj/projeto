@@ -5,6 +5,7 @@
 <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://img.icons8.com/flat-round/32/000000/book.png">
 <title>Bibliioteca</title>
 </head>
 <body>
@@ -12,9 +13,9 @@
 	
 	<div class="container">
 		
-		<h1>Lista de Alunos</h1>
+		<h1>Listagem de Alunos</h1>
 	 
-		<table>
+		<table class="highlight">
 			
 			<thead>
 				<tr>
@@ -27,14 +28,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="e : ${emprestimos}">
-					<td th:text="${e.id}">1</td>
-					<td><a th:href="@{/emprestimos/{id}(id=${e.id})}"><span th:text="${e.matricula}">20201204010004</span></a></td>
-					<td th:text="${e.nome}">Maria</td>
-					<td th:text="${e.cpf}">70642570418</td>
-					<td th:text="${e.dataNascimento}">19/03/2005</td>
-					<td th:text="${e.endereco}">Rua Flor de Cactos</td>
-					<td><a th:href="@{/emprestimos/{id}/deletar(id=${e.id})}">  <i class="material-icons">delete</i></a></td>
+				<tr th:each="a : ${alunos}">
+					<td th:text="${a.id}">1</td>
+					<td><a th:href="@{/alunos/{id}(id=${a.id})}"><span th:text="${a.matricula}">20201204010004</span></a></td>
+					<td th:text="${a.nome}">Maria</td>
+					<td th:text="${a.cpf}">70642570418</td>
+					<td th:text="${a.dataNascimento}">19/03/2005</td>
+					<td th:text="${a.endereco}">Rua Flor de Cactos</td>
+					<td>
+						<a th:href="@{/alunos/{id}/selecionar(id=${a.id})}"><i class="material-icons">edit</i></a>
+						<a th:href="@{/alunos/{id}/deletar(id=${a.id})}"><i class="material-icons">delete</i></a>
+					</td>
 				</tr>
 			</tbody>
 		</table>

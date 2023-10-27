@@ -2,42 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<!-- Compiled and minified CSS -->
+  <!-- Compiled and minified CSS --> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<title>Bibliioteca</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://img.icons8.com/flat-round/32/000000/book.png">
+    <title>Biblioteca - Empréstimo</title>
 </head>
 <body>
-	<div th:replace="~{menu :: menu}"></div>
-	
-	<div class="container">
-		<h1>Cadastro de Aluno</h1>
-	
-			<form action="/emprestimos" method="post">
-				<div>
-					<label>Id: </label> <input type="text" name="id">
-				</div>
-				<div>
-					<label>Matrícula: </label> <input type="text" name="matricula">
-				</div>
-				<div>
-					<label>Nome: </label> <input type="text" name="nome">
-				</div>
-				<div>
-					<label>CPF: </label> <input type="text" name="cpf">
-				</div>
-				<div>
-					<label>Data de Nascimento: </label> <input type="text" name="dataNascimento">
-				</div>
-				<div>
-					<label>Endereço: </label> <input type="text" name="endereco">
-				</div>
-				
-			<div>
-				<button class="waves-effect waves-light btn green" type="submit">Salvar</button>
-				<button class="waves-effect waves-light btn red" type="reset">Limpar</button>
-			</div>
-		</form>
-	</div>
-	
+    <div th:replace="~{menu :: menu}"></div>
+    <div class="container">
+    <h1>Realizar Empréstimo</h1>
+    <p th:if="${mensagem}" th:text="${mensagem}"></p>
+   
+	<form action="/emprestimos" method="post" >
+        <div>
+            <input type="hidden" name="id" th:value="${emprestimo.id}" readonly="readonly">
+        </div>
+        <div>
+            <label>Título do Livro:</label>
+            <input type="text" name="titulo" th:value="${emprestimo.titulo}">
+             <p style="color: red; font-weight: bolder;" th:errors="${emprestimo.titulo}"></p>
+        </div>
+        <div>
+            <label>Matrícula:</label>
+            <input type="text" name="matricula" th:value="${emprestimo.matricula}">
+            <p style="color: red; font-weight: bolder;" th:errors="${emprestimo.matricula}"></p>
+        </div>
+        <div>
+            <button class="waves-effect waves-light btn red" type="submit">Salvar</button>
+            <button class="waves-effect waves-light btn green" type="reset">Limpar</button>
+        </div>
+    </form>
+
 </body>
 </html>

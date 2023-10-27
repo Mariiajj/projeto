@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">  
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 	<nav th:fragment="menu" style="background-color: #228B22">
@@ -10,13 +11,15 @@
             <a href="#" class="brand-logo">Sistema de Biblioteca</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                  <li><a href="/">Home</a></li>
-                 <li><a href="/emprestimos/form">Cadastrar Aluno</a></li>
-                 <li><a href="/">Adicionar Livro</a></li>
-                 <li><a href="/">Realizar Empréstimo</a></li> 
+                 <li><a href="/alunos/form">Cadastrar Aluno</a></li>
+                 <li><a href="/livros">Listagem Livro</a></li>
+                 <li><a href="/livros/form">Adicionar Livro</a></li>
+                 <li><a href="/emprestimos/form"><i class="material-icons">add</i></a></li> 
+                  <li><a href="/emprestimos"><i class="material-icons">list</i></a></li>
             </ul>
         </div>
     </div>
 </nav>
-  </nav>
+ </nav>
 </body>
 </html>
