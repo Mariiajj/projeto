@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://img.icons8.com/flat-round/32/000000/book.png">
+<title>Bibliioteca - Alunos</title>
+</head>
+<body>
+	<div th:replace="~{menu :: menu}"></div>
+	
+	<div class="container">
+		<h1>Cadastro de Aluno</h1>
+	
+			<form action="/alunos" method="post">
+				<div>
+					<input type="hidden" name="id" th:value="${aluno.id}" readonly="readonly">
+				</div>
+				<div>
+					<label>Matrícula: </label> <input type="text" name="matricula" th:value="${aluno.matricula}">
+				</div>
+				<div>
+					<label>Nome: </label> <input type="text" name="nome" th:value="${aluno.nome}">
+				</div>
+				<div>
+					<label>CPF: </label> <input type="text" name="cpf" th:value="${aluno.cpf}">
+				</div>
+				<div>
+					<label>Ano de Nascimento: </label> <input type="text" name="dataNascimento" th:value="${aluno.dataNascimento}"> 
+				</div>
+				<div>
+					<label>Endereço: </label> <input type="text" name="endereco" th:value="${aluno.endereco}">
+				</div>
+				
+			<div>
+				<button class="waves-effect waves-light btn green" type="submit">Salvar</button>
+				<button class="waves-effect waves-light btn red" type="reset">Limpar</button>
+			</div>
+		</form>
+	</div>
+	
+</body>
+</html>
