@@ -19,7 +19,7 @@
             <tr>
               <th>Id</th>
               <th>Nome do Livro</th>
-              <th>Matricula</th>
+              <th>Matrícula</th>
               <th>Data de Realização do Empréstimo</th>
               <th>Data de Entrega</th>  
             </tr>
@@ -31,6 +31,9 @@
                 <td th:text="${e.aluno}">20201204010004</td>
                 <td th:text="${#temporals.format(e.dataEmprestimo, 'dd/MM/yyyy')}">25/10/2023</td>
                 <td th:text="${#temporals.format(e.dataEntrega, 'dd/MM/yyyy')}">10/11/2023</td>
+                <td>
+					<a th:href="@{/emprestimos/{id}/remover(id=${e.id})}"><i class="material-icons">delete</i></a>
+				</td>
             </tr>
         </tbody>
     </table>
