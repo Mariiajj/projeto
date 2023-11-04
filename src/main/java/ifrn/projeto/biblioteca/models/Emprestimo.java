@@ -8,8 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
 
 @Entity
 public class Emprestimo {
@@ -19,11 +19,12 @@ public class Emprestimo {
     private Long id;
 
     @ManyToOne
-    private Livro titulo;
+    @JoinColumn(name = "livro_id")
+    private Livro livro;
 
     @ManyToOne
-    private Aluno matricula;
-    private String andamento;
+    @JoinColumn(name = "aluno_id")
+    private Aluno aluno;
    
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private  LocalDate dataEmprestimo;
@@ -32,11 +33,6 @@ public class Emprestimo {
     private  LocalDate dataEntrega;
    
     private Long diasD;
-    
-    @PrePersist
-    public void prePersist() {
-    this.dataEmprestimo = LocalDate.now();
-    }
 
 	public Long getId() {
 		return id;
@@ -46,28 +42,20 @@ public class Emprestimo {
 		this.id = id;
 	}
 
-	public Livro getTitulo() {
-		return titulo;
+	public Livro getLivro() {
+		return livro;
 	}
 
-	public void setTitulo(Livro titulo) {
-		this.titulo = titulo;
+	public void setLivro(Livro livro) {
+		this.livro = livro;
 	}
 
-	public Aluno getMatricula() {
-		return matricula;
+	public Aluno getAluno() {
+		return aluno;
 	}
 
-	public void setMatricula(Aluno matricula) {
-		this.matricula = matricula;
-	}
-
-	public String getAndamento() {
-		return andamento;
-	}
-
-	public void setAndamento(String andamento) {
-		this.andamento = andamento;
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
 	}
 
 	public LocalDate getDataEmprestimo() {
@@ -96,9 +84,7 @@ public class Emprestimo {
 
 	@Override
 	public String toString() {
-		return "Emprestimo [id=" + id + ", titulo=" + titulo + ", matricula=" + matricula + ", andamento=" + andamento
-				+ ", dataEmprestimo=" + dataEmprestimo + ", dataEntrega=" + dataEntrega + ", diasD=" + diasD + "]";
-	}
-    
+		return "Emprestimo [id=" + id + ", livro=" + livro + ", aluno=" + aluno + ", dataEmprestimo=" + dataEmprestimo + ", dataEntrega=" + dataEntrega + ", diasD=" + diasD + "]";
+	} 
     
 }

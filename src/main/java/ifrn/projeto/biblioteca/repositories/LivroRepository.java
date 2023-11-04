@@ -7,5 +7,4 @@ import ifrn.projeto.biblioteca.models.Livro;
 public interface LivroRepository extends JpaRepository<Livro, Long>{
 
 	Livro findByTitulo(String titulo);
-
 }
