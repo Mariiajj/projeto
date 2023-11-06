@@ -1,5 +1,6 @@
 package ifrn.projeto.biblioteca.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +24,7 @@ import ifrn.projeto.biblioteca.repositories.LivroRepository;
 @Controller
 @RequestMapping("/emprestimos")
 public class EmprestimoController {
-	
+
 	@Autowired
 	private EmprestimoRepository ep;
 	@Autowired
@@ -36,69 +37,74 @@ public class EmprestimoController {
 		return "biblioteca/formEmprestimo";
 	}
 
-    @PostMapping  
-	public String realizarEmprestimo(String titulo, String matricula, Emprestimo emprestimo, BindingResult result, RedirectAttributes attributes) {
-    	
-    	if (result.hasErrors()) {
-	        return "biblioteca/formEmprestimo";
-	    }
-	
-	    attributes.addFlashAttribute("mensagem", "Empréstimo salvo com sucesso!");
-	    
-	    Livro livro = lr.findByTitulo(titulo);
-	    if (livro == null) {
-	    	result.rejectValue("livro.titulo", "error.titulo", "O livro não foi selecionado.");
-	        return "biblioteca/formEmprestimo";
-	    }
+	@PostMapping
+	public String realizarEmprestimo(String titulo, String matricula, Emprestimo emprestimo, BindingResult result,
+			RedirectAttributes attributes) {
 
-	    //Livro livroIdentificado = lr.findByTitulo(emprestimo.getLivro().getTitulo());
+		if (result.hasErrors()) {
+			return "biblioteca/formEmprestimo";
+		}
 
-	    //if (livroIdentificado == null) {
-	        //result.rejectValue("livro.titulo", "error.titulo", "O cadastro do livro não foi encontrado no sistema.");
-	        //return "biblioteca/formEmprestimo";
-	    //}
-	    
-	    Aluno aluno = al.findByMatricula(matricula);
-	    System.out.println(aluno);
-	    
-	    if (aluno == null) {
-	        result.rejectValue("aluno.matricula", "error.matricula", "O aluno(a) não foi selecionado.");
-	        return "biblioteca/formEmprestimo";
-	    }
-	    
-	    long emprestimosEfetuados = ep.countByAluno(aluno);
-	    if (emprestimosEfetuados >= 3) {
-	        result.rejectValue("aluno.matricula", "error.matricula", "O aluno excedeu o limite de empréstimos de 3 livros.");
-	        return "biblioteca/formEmprestimo";
-	    }
-	    
-	    Emprestimo emp = new Emprestimo();
-	    emp.setLivro(livro);
-	    emp.setAluno(aluno);
-	    ep.save(emp);
-	   
-	    return "redirect:/emprestimos/form";  
-	}  
-	
-    @GetMapping
+		attributes.addFlashAttribute("mensagem", "Empréstimo salvo com sucesso!");
+
+		Livro livro = lr.findByTitulo(titulo);
+		if (livro == null) {
+			result.rejectValue("livro.titulo", "error.titulo", "O livro não foi selecionado.");
+			return "biblioteca/formEmprestimo";
+		}
+
+		// Livro livroIdentificado = lr.findByTitulo(emprestimo.getLivro().getTitulo());
+
+		// if (livroIdentificado == null) {
+		// result.rejectValue("livro.titulo", "error.titulo", "O cadastro do livro não
+		// foi encontrado no sistema.");
+		// return "biblioteca/formEmprestimo";
+		// }
+
+		Aluno aluno = al.findByMatricula(matricula);
+		System.out.println(aluno);
+
+		if (aluno == null) {
+			result.rejectValue("aluno.matricula", "error.matricula", "O aluno(a) não foi cadastrado no sistema.");
+			return "biblioteca/formEmprestimo";
+		}
+
+		long emprestimosEfetuados = ep.countByAluno(aluno);
+		if (emprestimosEfetuados >= 3) {
+			result.rejectValue("aluno.matricula", "error.matricula",
+					"O aluno excedeu o limite de empréstimos de 3 livros.");
+			return "biblioteca/formEmprestimo";
+		}
+
+		Emprestimo emp = new Emprestimo();
+		emp.setLivro(livro);
+		emp.setAluno(aluno);
+		emp.setDataEmprestimo(LocalDate.now());
+		emp.setDataEntrega(emp.getDataEmprestimo().plusDays(Long.parseLong("14")));
+		System.out.println(emp);
+		ep.save(emp);
+
+		return "redirect:/emprestimos/form";
+	}
+
+	@GetMapping
 	public ModelAndView listar() {
 		List<Emprestimo> emprestimos = ep.findAll();
 		ModelAndView mv = new ModelAndView("biblioteca/listaEmprestimo");
 		mv.addObject("emprestimos", emprestimos);
 		return mv;
-	}	
-    
-    @GetMapping("/{id}/remover")
+	}
+
+	@GetMapping("/{id}/remover")
 	public String apagarEmprestimo(@PathVariable Long id) {
-		
+
 		Optional<Emprestimo> opt = ep.findById(id);
-		
-		if(!opt.isEmpty()) {  
+
+		if (!opt.isEmpty()) {
 			Emprestimo emprestimo = opt.get();
 			ep.delete(emprestimo);
 		}
-		
+
 		return "redirect:/emprestimos";
 	}
 }
-
