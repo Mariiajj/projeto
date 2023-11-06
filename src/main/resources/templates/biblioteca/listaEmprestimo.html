@@ -20,15 +20,15 @@
               <th>Id</th>
               <th>Nome do Livro</th>
               <th>Matrícula</th>
-              <th>Data de Realização do Empréstimo</th>
+              <th>Data de Realização</th>
               <th>Data de Entrega</th>  
             </tr>
         </thead>
         <tbody>
             <tr th:each="e : ${emprestimos}">
                 <td th:text="${e.id}">1</td>
-                <td th:text="${e.livro}">Diário de Um Banana</td>
-                <td th:text="${e.aluno}">20201204010004</td>
+                <td th:text="${e.livro.titulo}">Diário de Um Banana</td>
+                <td th:text="${e.aluno.matricula}">20201204010004</td>
                 <td th:text="${#temporals.format(e.dataEmprestimo, 'dd/MM/yyyy')}">25/10/2023</td>
                 <td th:text="${#temporals.format(e.dataEntrega, 'dd/MM/yyyy')}">10/11/2023</td>
                 <td>

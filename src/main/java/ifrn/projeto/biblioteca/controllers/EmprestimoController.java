@@ -1,5 +1,6 @@
 package ifrn.projeto.biblioteca.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -75,6 +76,8 @@ public class EmprestimoController {
 	    Emprestimo emp = new Emprestimo();
 	    emp.setLivro(livro);
 	    emp.setAluno(aluno);
+	    emp.setDataEmprestimo(LocalDate.now());
+	    emp.setDataEntrega(emp.getDataEmprestimo().plusDays(Long.parseLong("14")));
 	    ep.save(emp);
 	   
 	    return "redirect:/emprestimos/form";  
