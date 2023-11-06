@@ -31,8 +31,6 @@ public class Emprestimo {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private  LocalDate dataEntrega;
-   
-    private Long diasD;
 
 	public Long getId() {
 		return id;
@@ -74,17 +72,9 @@ public class Emprestimo {
 		this.dataEntrega = dataEntrega;
 	}
 
-	public Long getDiasD() {
-		return diasD;
-	}
-
-	public void setDiasD(Long diasD) {
-		this.diasD = diasD;
-	}
-
 	@Override
 	public String toString() {
-		return "Emprestimo [id=" + id + ", livro=" + livro + ", aluno=" + aluno + ", dataEmprestimo=" + dataEmprestimo + ", dataEntrega=" + dataEntrega + ", diasD=" + diasD + "]";
+		return "Emprestimo [id=" + id + ", livro=" + livro + ", aluno=" + aluno + ", dataEmprestimo=" + dataEmprestimo + ", dataEntrega=" + dataEntrega + "]";
 	} 
     
 }

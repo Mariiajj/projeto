@@ -27,10 +27,10 @@
         <tbody>
             <tr th:each="e : ${emprestimos}">
                 <td th:text="${e.id}">1</td>
-                <td th:text="${e.livro}">Diário de Um Banana</td>
-                <td th:text="${e.aluno}">20201204010004</td>
-                <td th:text="${#temporals.format(e.dataEmprestimo, 'dd/MM/yyyy')}">25/10/2023</td>
-                <td th:text="${#temporals.format(e.dataEntrega, 'dd/MM/yyyy')}">10/11/2023</td>
+                <td th:text="${e.livro.titulo}">Diário de Um Banana</td>
+                <td th:text="${e.aluno.matricula}">20201204010004</td>
+                <td th:text="${e.dataEmprestimo}">25/10/2023</td>
+                <td th:text="${e.dataEntrega}">10/11/2023</td>
                 <td>
 					<a th:href="@{/emprestimos/{id}/remover(id=${e.id})}"><i class="material-icons">delete</i></a>
 				</td>
